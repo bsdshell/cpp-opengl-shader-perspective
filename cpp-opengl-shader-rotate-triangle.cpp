@@ -20,21 +20,130 @@
 #include <vector>
 #include <string>
 
-#include "AronLib.h"
-// #include "AronCLibNew.h"
+
+#ifndef AronCLibNew
+#define AronCLibNew
+#include "AronCLibNew.h"
+#endif
+
+#ifndef AronOpenGLLib
+#define AronOpenGLLib
 #include "AronOpenGLLib.h"
+#endif
+
+#include "AronLib.h"
 
 using namespace std;
 using namespace MatrixVector;
 
-
 // DATE: Friday, 21 April 2023 12:12 PDT
-// Draw one rotated x-axis triangle only
-// COMPILE: opengl_compile.sh cpp-opengl_shader-rotate-triangle.cpp
+// KEY: Draw one rotated x-axis triangle only
+// COMPILE: opengl_compile.sh cpp-opengl-shader-rotate-triangle.cpp
+//
+// Fri  1 Mar 01:25:11 2024 
+// BUG: fixed There are duplicated include lib
+//
+class Frustum;
 
 void shaderSetMatrix(GLuint shaderHandle, string uniformVarStr, float arr[16]);
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+void frustum(float left, float right, float bottom, float top, float near, float far, float mat[16]);
 
-class Triangle{
+void createFrustumMat(Frustum& fm);
+
+class Cube{
+public:
+  float r;
+  float* arr;
+  int sizeOf;
+public:
+  Cube(float r_){
+	r = r_;
+  }
+  void init(){
+	float box[] = {
+	  -r, -r, -r,  0.5f, 0.0f, 0.0f, // 4
+      r,  -r, -r,  0.5f, 0.3f, 0.0f, // 3
+      -r, -r, r,   0.2f, 0.0f, 0.3f, // 7
+      r,  -r, r,   0.5f, 0.0f, 0.4f, // 8
+
+	  r,  r,  r,  0.5f, 0.0f, 0.0f, // 5
+	  r,  -r, -r, 0.4f, 0.5f, 0.0f, // 3
+	  r,  r,  -r, 0.5f, 0.0f, 0.0f, // 1
+	  -r, -r, -r, 0.5f, 0.2f, 0.1f, // 4
+
+	  -r, r,  -r, 0.5f, 0.4f, 0.0f, // 2
+	  -r, -r, r,  0.5f, 0.0f, 0.3f, // 7
+	  -r, r,  r,  0.5f, 0.2f, 0.0f, // 6
+	  r,  r,  r,  0.5f, 0.4f, 0.0f, // 5
+
+	  -r, r, -r,  0.5f, 0.3f, 0.0f, // 2
+	  r,  r, -r,  0.5f, 0.5f, 0.0f  // 1
+    };
+	sizeOf = sizeof(box);
+	arr = (float*) new float[sizeof(box)];
+	for(int i = 0; i < sizeof(box); i++){
+	  arr[i] = box[i];
+	}
+  }
+  int getSize(){
+	return sizeOf;
+  }
+  void setR(float r_){
+	r = r_;
+  }
+  ~Cube(){
+	delete[] arr;
+  }
+};
+
+class Frustum{
+public: 
+  float left;
+  float right;
+  float top;
+  float bottom;
+  float near;
+  float far;
+  float frustumMat[16];
+public:
+  Frustum(){
+	left = -1;
+	right = 1;
+	top = 1;
+	bottom = -1;
+	near = 1;
+	far = 3;
+	for(int i = 0; i < 16; i++){
+	  frustumMat[i] = 0;
+	}
+  }
+  Frustum(float _left, float _right, float _top, float _bottom, float _near, float _far){
+	left = _left;
+	right = _right;
+	top = _top;
+	bottom = _bottom;
+	near = _near;
+	far = _far;
+	for(int i = 0; i < 16; i++){
+	  frustumMat[i] = 0;
+	}
+  }
+  string toStr(){
+	char arr[200];
+	snprintf(arr, sizeof(arr), "left=%f right=%f top=%f bottom=%f near=%f far=%f\n", left, right, top, bottom, near, far);
+	string s = charArrToString(arr);
+	return s;
+  }
+};
+
+
+void createFrustumMat(Frustum& fm){
+  // void frustum(float left, float right, float bottom, float top, float near, float far, float mat[16]){
+  frustum(fm.left, fm.right, fm.bottom, fm.top, fm.near, fm.far, fm.frustumMat);
+}
+
+class Draw{
     public:
         float mat[16];
         int numFloat;
@@ -44,7 +153,7 @@ class Triangle{
         unsigned int VBO;
         unsigned int VAO;
     public: 
-        Triangle(int numFloat, float* arr, int numVertex, int numOfComponentAttri){
+        Draw(int numFloat, float* arr, int numVertex, int numOfComponentAttri){
             this -> pt = (float*)malloc(numFloat*sizeof(float));
             this -> numFloat = numFloat;
 			this -> numVertex = numVertex;
@@ -92,7 +201,7 @@ class Triangle{
             glBindVertexArray(VAO);
             glDrawArrays(mode, 0, numVertex);
         }
-        ~Triangle(){
+        ~Draw(){
             free(pt);
         }
 };
@@ -110,7 +219,7 @@ UPDATE: Sat 18 Dec 23:33:42 2021
 
 */
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-void processInput(GLFWwindow *window);
+void processInput(GLFWwindow *window, Frustum& frustum);
 
 // settings
 const unsigned int SCR_WIDTH = 800;
@@ -123,8 +232,13 @@ std::string vertexShaderStr = R"(
     layout (location = 1) in vec3 aColor;
     // uniform mat4 mymat;
     out vec3 ourColor;
-    // uniform mat4 rotmat;
+    uniform mat4 rotYMat;
+    uniform mat4 rotXMat;
+    uniform mat4 rotZMat;
     uniform mat4 viewMat;
+
+    // translation matrix
+    uniform mat4 trMat;  
     uniform mat4 projFrum;
     void main()
     {
@@ -140,8 +254,11 @@ std::string vertexShaderStr = R"(
                     0.0, 0.0, 1.2, 0.0,  
                     0.0, 0.0, 0.0, 1.0);
 
-        // gl_Position = perspectiveMat * viewMat * modelMat * vec4(aPos, 1.0);
-        gl_Position = projFrum * viewMat * vec4(aPos, 1.0);
+        mat4 mm = projFrum;
+        vec4 vv = projFrum * viewMat * vec4(aPos, 1.0);
+        gl_Position = projFrum * viewMat * trMat * rotYMat * rotXMat * rotZMat* vec4(aPos, 1.0);
+        // gl_Position = rotYMat * vec4(aPos, 1.0);
+        // gl_Position = vec4(aPos, 1.0);
         ourColor = aPos; 
 
         // gl_Position = tmat * vec4(aPos, 1.0);
@@ -224,10 +341,10 @@ void rotateZ(float outmat[16], float alpha){
 // +X ⨂ +Z = -Y
 void rotateY(float outmat[16], float alpha){
     float mat[] = {
-	    cos(alpha),   0,   sin(alpha), 0, 
-		0          ,  1,   0,          0, 
-        -sin(alpha),  0,  cos(alpha),  0,
-        0,            0,  0,           1,
+	    cos(alpha),   0,  sin(alpha), 0, 
+		0          ,  1,  0,          0, 
+        -sin(alpha),  0,  cos(alpha), 0,
+        0,            0,  0,          1,
     };
 
 	for(int i = 0; i < 16; i++)
@@ -238,6 +355,7 @@ void rotateY(float outmat[16], float alpha){
 }
 
 // +Y ⨂ +Z = +X
+// outmat[16] => Column-major matrix
 void rotateX(float outmat[16], float alpha){
     float mat[] = {
 	    1, 0,           0,            0,
@@ -248,9 +366,25 @@ void rotateX(float outmat[16], float alpha){
 	for(int i = 0; i < 16; i++)
 	  outmat[i] = mat[i];
 
+	// transpose, change to Column-major matrix
+    tranmat4(outmat);
+}
+
+void translate(float outmat[16], float x, float y, float z){
+    float mat[] = {
+        1,  0, 0, x,
+        0,  1, 0, y,
+        0,  0, 1, z,
+        0,  0, 0, 1
+    };
+
+	for(int i = 0; i < 16; i++)
+	  outmat[i] = mat[i];
+
 	// transpose, change to column-major matrix
     tranmat4(outmat);
 }
+
 
 // URL: http://localhost/html/indexUnderstandOpenGL.html
 void frustum(float left, float right, float bottom, float top, float near, float far, float mat[16]){
@@ -266,18 +400,20 @@ void frustum(float left, float right, float bottom, float top, float near, float
 	2 * n / (r - l),    0,           (r + l) / (r - l), 0,
 	0,                  2*n/(t - b), (t + b) / (t - b), 0,
 	0,                  0,           (n + f) / (n - f), 2*n*f/(n - f),
-	0,                  0,           -1,                1
+	0,                  0,           -1,                0
   };
   
   for(int i = 0; i < 16; i++){
 	mat[i] = m[i];
   }
 
-  // From Row-major to Column-major
+  // Convert Row-major to Column-major
   tranmat4(mat);
 }
 
 using namespace MatrixVector;
+
+
 /**
    return a Column-major 4 x 4 view matrix
    
@@ -301,26 +437,62 @@ void lookAtMatrix(vector<float> eye, vector<float> at, vector<float> up, float v
 	vector<float> u = crossProduct(s, lookDir);
 	print(u);
 
-	vector<vector<float>> vv = {s, u, lookDir};
+	vector<float> s_n = normalize(s);
+	vector<float> u_n = normalize(u);
+	vector<float> lookDir_n = normalize(lookDir);
+	
+	vector<vector<float>> vv = {s_n, u_n, negateVec(lookDir_n)};
 	mat m1(vv);
 	vec v(3);
 	fw("insertVecNext 1");
 	mat m2 = m1.insertVecNext(2, v);
 	m2.print();
+	row r(4);
+	mat m3 = m2.addRow(r);
+	m3.arr[3][3] = 1;
+	fw("m3 Row-major");
+	m3.print();
+	
+	fw("m4 Row-major R^{-1}  ∵ R is orthonormal matrix");
+	mat m4 = m3.transpose();
 
+	m4.print();
+	float mymat[16];
+	matToArr(m4, mymat, 16);
+	fw("matToArr => Column-major");
+	printArr(mymat, 16);
+	
+	// Create Row-major translation inverse matrix
+	mat tr(4, 4);
+	mat tr1 = tr.id();
+	vector<float> tv = add(negateVec(eye), float(1));
+	tr1.setVec(3, tv);
+
+	// Row-major vm = R^{-1} * T^{-1}
+	mat vm = tr1 * m4;
+	fw("Row-major veiw matrix");
+	vm.print();
+
+	// Change vm to Column-major
+	mat colViewMat = vm.transpose();
+
+	// Convert Column-major mat to float array[16]
+	matToArr(colViewMat, mymat, 16);
+	
+	
 	// z => lookDir
 	// x => s
 	// y => u
-	
+	/*
 	float mat[] = {
 		1, 0,     0,    0,
 		0, 3/sq, -2/sq, 0,
 		0, 2/sq, 3/sq,  0,
 		0, 0,    0,     1
 	  };
-
+	*/
 	for(int i = 0; i < 16; i++){
-	  viewMat[i] = mat[i];
+	  viewMat[i] = mymat[i];
 	}
 	/*
 	float viewMat[] = {
@@ -332,7 +504,8 @@ void lookAtMatrix(vector<float> eye, vector<float> at, vector<float> up, float v
 	*/
 	
 	// Column-major
-	tranmat4(viewMat);
+	// tranmat4(viewMat);
+	
 }
 
 int main(){
@@ -409,24 +582,58 @@ int main(){
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
 
+	/*
+	float rx = 0.5;
     float box[] = {
-	    0, 0, 0, 1.0f, 0.0f, 0.0f,
-        1, 0, 0, 1.0f, 0.0f, 0.0f,
-        0, 1, 0, 1.0f, 0.0f, 0.0f,
-        1, 1, 0, 1.0f, 0.0f, 0.0f,
+	    0,   0, 0, 0.5f, 0.0f, 0.0f,
+        rx,  0, 0, 0.5f, 0.0f, 0.0f,
+        0,   rx, 0, 0.5f, 0.0f, 0.0f,
+        rx,  rx, 0, 0.5f, 0.0f, 0.0f,
 
-        0, 1, -1, 1.0f, 0.0f, 0.0f,
-        1, 1, -1, 1.0f, 0.0f, 0.0f,
-        0, 0, -1, 1.0f, 0.0f, 0.0f,
-        1, 0, -1, 1.0f, 0.0f, 0.0f,
+        0,  rx, -rx, 0.5f, 0.0f, 0.0f,
+        rx, rx, -0.5, 0.5f, 0.0f, 0.0f,
+        0,  0, -rx,  0.5f, 0.0f, 0.0f,
+        rx, 0, -rx, 0.5f, 0.0f, 0.0f,
 
-        1, 1, 0, 1.0f, 0.0f, 0.0f,
-        1, 0, 0, 1.0f, 0.0f, 0.0f,
-        0, 0, -1, 1.0f, 0.0f, 0.0f,
-        0, 0, 0, 1.0f, 0.0f, 0.0f,
+        rx, rx, 0, 0.5f, 0.0f, 0.0f,
+        rx, 0, 0, 0.5f, 0.0f, 0.0f,
+        0, 0, -rx, 0.5f, 0.0f, 0.0f,
+        0, 0, 0, 0.5f, 0.0f, 0.0f,
 
-        0, 1, -1, 1.0f, 0.0f, 0.0f,
-        0, 1,  0, 1.0f, 0.0f, 0.0f
+        0, rx, -rx, 0.5f, 0.0f, 0.0f,
+        0, rx,  0, 0.5f, 0.0f, 0.0f
+    };
+	*/
+
+    /**
+	SEE: pdf file
+	http://localhost/pdf/triangle_strips_for_fast_rendering.pdf
+	https://stackoverflow.com/questions/28375338/cube-using-single-gl-triangle-strip
+	
+	    NOTE: Need to enable face culling in order to see the cube properly
+	    Enable face culling
+		glEnable(GL_CULL_FACE);
+		glCullFace(GL_BACK); // Cull the back faces
+	*/
+	float r = 0.5;
+    float box[] = {
+	  -r, -r, -r,  0.5f, 0.0f, 0.0f, // 4
+      r,  -r, -r,  0.5f, 0.3f, 0.0f, // 3
+      -r, -r, r,   0.2f, 0.0f, 0.3f, // 7
+      r,  -r, r,   0.5f, 0.0f, 0.4f, // 8
+
+	  r,  r,  r,  0.5f, 0.0f, 0.0f, // 5
+	  r,  -r, -r, 0.4f, 0.5f, 0.0f, // 3
+	  r,  r,  -r, 0.5f, 0.0f, 0.0f, // 1
+	  -r, -r, -r, 0.5f, 0.2f, 0.1f, // 4
+
+	  -r, r,  -r, 0.5f, 0.4f, 0.0f, // 2
+	  -r, -r, r,  0.5f, 0.0f, 0.3f, // 7
+	  -r, r,  r,  0.5f, 0.2f, 0.0f, // 6
+	  r,  r,  r,  0.5f, 0.4f, 0.0f, // 5
+
+	  -r, r, -r,  0.5f, 0.3f, 0.0f, // 2
+	  r,  r, -r,  0.5f, 0.5f, 0.0f  // 1
     };
 	
     float tri[] = {    
@@ -436,75 +643,151 @@ int main(){
                           //  R     G     B
     };
 	int numVertex = 3;
-	
 	// 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f = 6 components
 	int numOfComponentAttri = 6;
-    Triangle* triPt = new Triangle(sizeof(tri), tri, numVertex, numOfComponentAttri);
-	/// Triangle* triPt = new Triangle(numVertex*numOfComponentAttri, box, numVertex, numOfComponentAttri);
+    Draw* triPt = new Draw(sizeof(tri), tri, numVertex, numOfComponentAttri);
+	
+	float rectangle[] = {
+	  -0.5f, -0.5f, 0.0f,  0.0f, 0.0f, 1.0f,
+	  0.5f,  -0.5f, 0.0f,  0.0f, 1.0f, 1.0f,
+	  -0.5f, 0.5f, 0.0f,   0.0f, 1.0f, 0.0f,
+	  0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f
+	  //                      R     G     B
+    };
+	
+	int rect_numVert = 4;
+	int rect_numComp = 6;
+	Draw* rectPt = new Draw(sizeof(rectangle), rectangle, rect_numVert, rect_numComp);
+
+	int box_numVert = 14;
+	int box_numComp = 6;
+	Draw* boxPt = new Draw(sizeof(box), box, box_numVert, box_numComp);
+	
+	float r1 = 0.5f;
+
 
 	/*
-    GLuint rotmatId = glGetUniformLocation(shaderProgram, "rotmat");
-    if (rotmatId == -1){
-        printf("ERROR: rotmatId=%d\n", rotmatId);
-        exit(1);
-    }else{
-        // Set up rotation matrix here
-    }
+    float tetrahedron[] = {
+	  1/sqrtf(3.0)*r1,       0,           0,                0.5f, 0.0f, 0.9f,	// 1
+	  -1/(2 * sqrtf(3.0f))*r1,  0,           -(1/2.0f)*r1,  0.5f, 0.3f, 0.0f,	// 2
+	  0.0f,      sqrtf(2/3.0f)*r1, 0,              0.2f, 0.0f, 0.3f,	// 3           
+	  -1/(2*sqrt(3.0f))*r1,  0,               1/2.0f*r1,   0.2f, 0.2f, 0.0f,	// 4
+	  1/sqrtf(3.0)*r1,       0,           0,                0.5f, 0.0f, 0.9f,	// 5
+	  -1/(2.0f * sqrtf(3.0f))*r1,  0,           -(1/2.0f)*r1,  0.5f, 0.3f, 0.0f	// 2
+    };
+	*/
+	
+   // http://localhost/html/indexTetrahedron.html
+	/**
+	  Check whether all the edges have the same length
+      a1 ← 1, ¯1, 1
+      a2 ← ¯1, 1, 1
+      a3 ← ¯1, ¯1, ¯1
+      a4 ← 1, 1, ¯1
+      a5 ← 1, ¯1, 1
+      a6 ← ¯1, 1, 1
+      dist ← {x ← ⍺ - ⍵ ⋄ 0.5*⍨ +/ x*2}
+      e12 ← a1 dist a2
+      e23 ← a2 dist a3
+      e34 ← a3 dist a4
+      e45 ← a4 dist a5
+      e56 ← a5 dist a6
+      eq ← e12 e23 e34 e45 e56
+	  ∧/ 2=/eq
+      1
+
+	 1∘=¨ 2=/eq
+	 ┌→──────┐
+	 │1 1 1 1│
+	 └~──────┘
+	 */
+	float tetrahedron[] = {
+	  r1, -r1, r1,                0.5f, 0.0f, 0.9f,	// A a1
+	  -r1, r1,  r1,               0.2f, 0.0f, 0.3f,	// B a2        
+	  -r1,-r1,  -r1,              0.5f, 0.3f, 0.0f,	// C a3
+	  r1, r1,  -r1,               0.2f, 0.2f, 0.0f,	// D a4
+	  r1, -r1, r1,                0.5f, 0.0f, 0.9f,	// A a5
+	  -r1, r1,  r1,               0.2f, 0.0f, 0.3f,	// B a6        
+    };
+	
+    
+	fw("tetrahedron");
+	// printArr(tetrahedron, 6*6, 6);
+	
+	/*
+    float tetrahedron[] = {
+	  -r, -r, -r,  0.5f, 0.0f, 0.0f, // 4
+      r,  -r, -r,  0.5f, 0.3f, 0.0f, // 3
+      -r, -r, r,   0.2f, 0.0f, 0.3f, // 7
+      r,  -r, r,   0.5f, 0.0f, 0.4f, // 8
+
+	  r,  r,  r,  0.5f, 0.0f, 0.0f, // 5
+	  r,  -r, -r, 0.4f, 0.5f, 0.0f, // 3
+	};
 	*/
 
+	int tetrahedron_numVert = 6;
+	int tetrahedron_numComp = 6;
+	Draw* tetraPt = new Draw(sizeof(tetrahedron), tetrahedron, tetrahedron_numVert, tetrahedron_numComp);
+	
 	const float sq = sqrt(13);
 
 	float viewMat[16];
 	
-	vector<float> eye = {0, 2, 3};
+	// vector<float> eye = {0, 2, 3};
+	vector<float> eye = {0, 0, 1.5};
+	pp("eye=");
+	pp(eye);
 	vector<float> at  = {0, 0, 0};
 	vector<float> up  = {0, 1, 0};
 	
 	lookAtMatrix(eye, at, up, viewMat);
-	
+ 
 	// tranmat4(testMat);
 	fw("testMat");
 	printArr(viewMat, 16, 4);
-	
-
-	/*
-	float viewMat[] = {
-		1, 0,     0,    0,
-		0, 3/sq, -2/sq, 0,
-		0, 2/sq, 3/sq,  0,
-		0, 0,    0,     1
-	  };
-	*/
-	
-	/*
-	float viewMat[] = {
-		1, 0, 0, 0,
-		0, 1, 0, 0,
-		0, 0, 1, 0,
-		0, 0, 0, 1
-	  };
-	*/
-	// tranmat4(viewMat);
-
-
 	
     GLuint viewMatId = glGetUniformLocation(shaderProgram, "viewMat");
     if (viewMatId == -1){
 	  printf("ERROR: viewMatId=%d\n", viewMatId);
 	  exit(1);
     }else{
-        // Set up view matrix matrix here
     }
-
 	
 	GLuint projFrumId = glGetUniformLocation(shaderProgram, "projFrum");
     if (projFrumId == -1){
 	  printf("ERROR: projFrumId=%d\n", projFrumId);
 	  exit(1);
     }else{
-        // Set up view matrix matrix here
+    }
+
+    GLuint rotYMatId = glGetUniformLocation(shaderProgram, "rotYMat");
+    if (rotYMatId == -1){
+        printf("ERROR: rotYMatId=%d\n", rotYMatId);
+        exit(1);
+    }else{
     }
 	
+	GLuint rotXMatId = glGetUniformLocation(shaderProgram, "rotXMat");
+    if (rotXMatId == -1){
+        printf("ERROR: rotXMatId=%d\n", rotXMatId);
+        exit(1);
+    }else{
+    }
+	
+	GLuint rotZMatId = glGetUniformLocation(shaderProgram, "rotZMat");
+    if (rotZMatId == -1){
+        printf("ERROR: rotZMatId=%d\n", rotZMatId);
+        exit(1);
+    }else{
+    }
+	
+	GLuint trMatId = glGetUniformLocation(shaderProgram, "trMat");
+    if (trMatId == -1){
+        printf("ERROR: trMatId=%d\n", trMatId);
+        exit(1);
+    }else{
+    }
 
 	float projFrum[16];
 	float left = -1;
@@ -512,26 +795,108 @@ int main(){
 	float bottom = -1;
 	float top = 1;
 	// near and far must be positive in glFrumstum()
-	float near = -1;
-	float far = 1;
-	frustum(left, right, bottom, top, near, far, projFrum);
+	float near = 1;
+	float far = 20;
+	fw("near=");
+	pp(near);
+	fw("far=");
+	pp(far);
 	
+	// Return Column-major matrix
+	frustum(left, right, bottom, top, near, far, projFrum);
+
+	float trMat[16];
+	float trX = 0.0f;
+	float trY = 0.0f;
+	float trZ = 0.0f;
+
+	// trMat is identity matrix
+	translate(trMat, trX, trY, trZ);
+	
+	Frustum fmInfo;
     unsigned int VBO4;
     unsigned int VAO4;
-    triPt -> setupVBOVAO();
-	float rotmat[16];
+    // rectPt -> setupVBOVAO();
+	boxPt -> setupVBOVAO();
+	tetraPt -> setupVBOVAO();
+	float rotYMat[16];
+	float rotXMat[16];
+	float rotZMat[16];
+	float rotXVal = 0.0f;
+	float rotYVal = 3.1415926/6.0f;
+	float rotZVal = 0.0f;
+	bool enableWireFrame = false;
+	bool drawBox = false;
     // render loop
     // -----------
     while (!glfwWindowShouldClose(window)) {
         // input
         // -----
-        processInput(window);
+	  
+		if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS){
+		  rotYVal += 0.1;
+		}else if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS){
+		  rotYVal -= 0.1;
+		} else if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS){
+		  rotXVal += 0.1;
+		}else if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS){
+		  rotXVal -= 0.1;
+		}else if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS){
+		  rotZVal += 0.1;
+		}else if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS){
+		  rotZVal -= 0.1;
+		}else if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS){
+		  trX -= 0.1;
+		}else if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS){
+		  trX += 0.1;
+		}else if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS){
+		  trY -= 0.05;
+		}else if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS){
+		  trY += 0.05;
+		}else if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS){
+		  enableWireFrame = !enableWireFrame;
+		}else if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS){
+		  drawBox = !drawBox;
+		}else if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS){
+		  rotXVal = 0.0f;
+		  rotYVal = 3.1415926/6.0f;
+		  rotZVal = 0.0f;
+		  trX = 0.0f;
+		  trY = 0.0f;
+		  trZ = 0.0f;
+		}
+		
+	    processInput(window, fmInfo);
+		createFrustumMat(fmInfo);
+
+		for(int i = 0; i < 16; i++){
+		  projFrum[i] = fmInfo.frustumMat[i];
+		}
+
+		// writeFileAppend("/tmp/debug.x", fmInfo.toStr());
+
+		/*
+		sleep(1);
+		printArr(viewMat, 16, 4);
+		*/
+		// glfwSetKeyCallback(window, key_callback);
 
         // render
         // ------
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
-
+		// KEY: GL_DEPTH_BUFFER_BIT, depth test
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		
+		// Enable face culling
+		glEnable(GL_CULL_FACE);
+		glCullFace(GL_BACK); // Cull the back faces
+		
+		// Enable wireframe
+		if(enableWireFrame){
+		  glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		}else{
+		  glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		}
         // be sure to activate the shader before any calls to glUniform
         // glUseProgram(shaderProgram);
 
@@ -541,11 +906,51 @@ int main(){
         float redValue   = cos(timeValue) / 2.0f + 0.5f;
 
 		float beta = sin(timeValue);
-		rotateX(rotmat, beta);
-        // triPt -> setMatrix(shaderProgram, "rotmat", rotmat);
+		rotateX(rotXMat, rotXVal);
+		rotateY(rotYMat, rotYVal);
+		rotateZ(rotZMat, rotZVal);
+
+		translate(trMat, trX, trY, trZ);
+		
+	    // lookAtMatrix(eye, at, up, viewMat);
+		
+		/*
+        triPt -> setMatrix(shaderProgram, "rotYMat", rotYMat);
 		triPt -> setMatrix(shaderProgram, "viewMat", viewMat);
 		triPt -> setMatrix(shaderProgram, "projFrum", projFrum);
         triPt -> draw(GL_TRIANGLE_STRIP);
+		*/
+		
+		/*
+		rectPt -> setMatrix(shaderProgram, "rotYMat", rotYMat);
+		rectPt -> setMatrix(shaderProgram, "viewMat", viewMat);
+		rectPt -> setMatrix(shaderProgram, "projFrum", projFrum);
+        rectPt -> draw(GL_TRIANGLE_STRIP);
+		*/
+		
+		
+		boxPt -> setMatrix(shaderProgram, "rotXMat", rotXMat);		
+		boxPt -> setMatrix(shaderProgram, "rotYMat", rotYMat);
+		boxPt -> setMatrix(shaderProgram, "rotZMat", rotZMat);
+		boxPt -> setMatrix(shaderProgram, "viewMat", viewMat);
+		boxPt -> setMatrix(shaderProgram, "projFrum", projFrum);
+		boxPt -> setMatrix(shaderProgram, "trMat", trMat);
+		
+		if(drawBox){
+		  boxPt -> draw(GL_TRIANGLE_STRIP);
+		}
+		
+		
+		tetraPt -> setMatrix(shaderProgram, "rotXMat", rotXMat);		
+	    tetraPt -> setMatrix(shaderProgram, "rotYMat", rotYMat);
+	    tetraPt -> setMatrix(shaderProgram, "rotZMat", rotZMat);
+		tetraPt -> setMatrix(shaderProgram, "viewMat", viewMat);
+	    tetraPt -> setMatrix(shaderProgram, "projFrum", projFrum);
+		tetraPt -> setMatrix(shaderProgram, "trMat",    trMat);
+        tetraPt -> draw(GL_TRIANGLE_STRIP);
+		
+
+		
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
         glfwSwapBuffers(window);
@@ -561,6 +966,9 @@ int main(){
 
     glDeleteProgram(shaderProgram);
     delete triPt;
+	delete rectPt;
+	delete boxPt;
+	delete tetraPt;
 
     // glfw: terminate, clearing all previously allocated GLFW resources.
     // ------------------------------------------------------------------
@@ -569,10 +977,26 @@ int main(){
 }
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
+// URL: https://www.glfw.org/docs/3.3/group__keys.html
 // ---------------------------------------------------------------------------------------------------------
-void processInput(GLFWwindow *window) {
-    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+void processInput(GLFWwindow *window, Frustum& fm) {
+  if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS){
         glfwSetWindowShouldClose(window, true);
+  }else if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS){
+	fm.near -= 0.01;
+	log("press A");
+  }else if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS){
+	fm.near += 0.01;
+	log("pres B");
+  }
+}
+
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods){
+  if(key == GLFW_KEY_ESCAPE && action == GLFW_PRESS){
+	glfwSetWindowShouldClose(window, true);
+  }if (key == GLFW_KEY_A && action == GLFW_PRESS){
+	log("pres A =>");
+  }
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes

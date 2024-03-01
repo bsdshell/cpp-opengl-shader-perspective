@@ -1,0 +1,9 @@
+#ifndef AronCLibNew
+#define AronCLibNew
+#include "AronCLibNew.h"
+#endif
+
+#ifndef AronOpenGLLib
+#define AronOpenGLLib
+#include "AronOpenGLLib.h"
+#endif

@@ -1,0 +1,805 @@
+
+/Users/aaa/myfile/bitbucket/cpplib/AronLib.h,47255
+#define __AronLib____AronLib__2,20
+void sleepSec(int n){sleepSec198,4506
+int gcd(int a, int b){gcd207,4671
+vector<T> normalize(vector<T> v){normalize222,4887
+vector<T> negateVec(vector<T> v){negateVec237,5085
+void testfun()testfun246,5197
+void testfun1() {  testfun1250,5217
+void testfun2 ( ) {  testfun2253,5240
+inline uint64_t nowMilliseconds() {nowMilliseconds261,5361
+inline uint64_t nowMicroseconds() {nowMicroseconds270,5643
+inline uint64_t nowNanoseconds() {nowNanoseconds278,5923
+int strToInt(string s) {strToInt285,6131
+void getTypeSize(){getTypeSize290,6205
+int maxConsecutiveOne(vector<int> vec){maxConsecutiveOne309,6739
+int maxConsecutiveChar(char* arr, int size, char c){maxConsecutiveChar348,7369
+std::map<char, int> hexMap(){hexMap394,8058
+std::map<int, char> hexMapRev(){hexMapRev412,8312
+int numFromBase(string fromBase, string input){numFromBase425,8606
+string baseToBase(string fromBase, string toBase, string input){baseToBase443,9039
+vector<int> toBinary(int n){toBinary464,9464
+vector<vector<T>> arrToVec2(T* arr, int len, int width){arrToVec2481,9778
+two<T, T> divMod(T a, T b){divMod510,10388
+int max(int a, int b, int c){max516,10461
+int max(int a, int b, int c, int d){max520,10524
+int max(vector<int> v){max524,10602
+int abs_int(int a){abs_int537,10798
+float abs_f(float a){abs_f540,10835
+long abs_l(long a){abs_l543,10874
+long long abs_ll(long long a){abs_ll546,10911
+double abs_d(double a){abs_d549,10959
+unsigned int abs_ui(unsigned int a){abs_ui552,11000
+string reverseStr(string s){reverseStr556,11052
+void writeFileAppendVector(string fname, std::vector<T> vec) {writeFileAppendVector564,11185
+void newline(){newline573,11403
+void writeFile(string fname, string s) {writeFile579,11440
+void writeFileAppend(string fname, string s) {writeFileAppend586,11572
+void writeFileVector(string fname, std::vector<T> vec) {writeFileVector594,11752
+void writeFileAppendRow(string fname, std::vector<T> vec) {writeFileAppendRow611,12036
+std::pair<string, string> split(string s, int inx) {split620,12245
+vector<int> sumVec(vector<int> v1, vector<int> v2){sumVec647,12803
+static vector<vector<T>> splitWhen(Fun f, const vector<T>& vec) {splitWhen687,13862
+string removeIndex(string s, int inx) {removeIndex714,14433
+vector<T> removeIndex(vector<T>& vec, int inx){removeIndex726,14729
+vector<T> removeIndexRange(vector<T>& vec, int fromInx, int toInx){removeIndexRange745,15115
+namespace AronPrint {AronPrint802,16226
+void pp(T t) {pp827,16632
+void pp(T t) {AronPrint::pp827,16632
+void pp(T t1, T t2) {pp832,16683
+void pp(T t1, T t2) {AronPrint::pp832,16683
+void pp(T t1, T t2, T t3) {pp838,16792
+void pp(T t1, T t2, T t3) {AronPrint::pp838,16792
+void ppf(const char* format, ...) {ppf841,16853
+void ppf(const char* format, ...) {AronPrint::ppf841,16853
+void pp(std::pair<T, U> p){ pp847,16979
+void pp(std::pair<T, U> p){ AronPrint::pp847,16979
+void pp(int n) {pp851,17027
+void pp(int n) {AronPrint::pp851,17027
+void pp(float n) {pp855,17079
+void pp(float n) {AronPrint::pp855,17079
+void pp(long n) {pp859,17133
+void pp(long n) {AronPrint::pp859,17133
+void pp(unsigned long n) {pp862,17185
+void pp(unsigned long n) {AronPrint::pp862,17185
+void pp(string msg0, string msg1){pp866,17247
+void pp(string msg0, string msg1){AronPrint::pp866,17247
+void pp(string msg0, float num){pp869,17320
+void pp(string msg0, float num){AronPrint::pp869,17320
+void pp(string msg0, int num){pp872,17390
+void pp(string msg0, int num){AronPrint::pp872,17390
+void pp(string msg0, long num){pp875,17458
+void pp(string msg0, long num){AronPrint::pp875,17458
+void pp(string msg0, double num){pp878,17527
+void pp(string msg0, double num){AronPrint::pp878,17527
+void pp(string msg0, char* charPt){pp881,17598
+void pp(string msg0, char* charPt){AronPrint::pp881,17598
+void fl(string s) {fl892,17741
+void fl(string s) {AronPrint::fl892,17741
+void fw(string s) {fw899,17892
+void fw(string s) {AronPrint::fw899,17892
+class StopWatch {StopWatch909,18055
+  clock_t startTime = 0;startTime910,18073
+  clock_t startTime = 0;StopWatch::startTime910,18073
+  clock_t endTime = 0;endTime911,18098
+  clock_t endTime = 0;StopWatch::endTime911,18098
+  clock_t diff = 0;diff912,18121
+  clock_t diff = 0;StopWatch::diff912,18121
+  StopWatch() {StopWatch914,18150
+  StopWatch() {StopWatch::StopWatch914,18150
+  void begin() {begin919,18233
+  void begin() {StopWatch::begin919,18233
+  void start() {start923,18308
+  void start() {StopWatch::start923,18308
+  void end() {end926,18342
+  void end() {StopWatch::end926,18342
+  void print() {print932,18546
+  void print() {StopWatch::print932,18546
+  void printTick() {printTick938,18752
+  void printTick() {StopWatch::printTick938,18752
+class two{two947,18947
+  T first;first949,18967
+  T first;two::first949,18967
+  T x;x950,18978
+  T x;two::x950,18978
+  U second;second952,19002
+  U second;two::second952,19002
+  U y;y953,19014
+  U y;two::y953,19014
+  two(){two954,19021
+  two(){two::two954,19021
+  two(T first, U second) {two957,19050
+  two(T first, U second) {two::two957,19050
+  string toStr(){toStr962,19170
+  string toStr(){two::toStr962,19170
+  string toString(){toString965,19244
+  string toString(){two::toString965,19244
+namespace AronLambda {AronLambda972,19295
+T head(vector<T> vec) {head978,19365
+T head(vector<T> vec) {AronLambda::head978,19365
+char head(string s){head984,19440
+char head(string s){AronLambda::head984,19440
+T last(vector<T> vec) {last996,19647
+T last(vector<T> vec) {AronLambda::last996,19647
+static vector<T> reverse(vector<T> vec) {reverse1012,19873
+static vector<T> reverse(vector<T> vec) {AronLambda::reverse1012,19873
+static vector<T> rev(vector<T> vec) {rev1020,20050
+static vector<T> rev(vector<T> vec) {AronLambda::rev1020,20050
+static vector<T> takeWhile(Fun f, vector<T> vec) {takeWhile1042,20451
+static vector<T> takeWhile(Fun f, vector<T> vec) {AronLambda::takeWhile1042,20451
+static vector<T> dropWhile(Fun f, vector<T> vec) {dropWhile1060,20763
+static vector<T> dropWhile(Fun f, vector<T> vec) {AronLambda::dropWhile1060,20763
+static string takeWhile(Fun f, string str) {takeWhile1073,21028
+static string takeWhile(Fun f, string str) {AronLambda::takeWhile1073,21028
+static string dropWhile(Fun f, string str) {dropWhile1089,21292
+static string dropWhile(Fun f, string str) {AronLambda::dropWhile1089,21292
+static two<string, string> splitWhileStr(Fun f, string str){splitWhileStr1105,21563
+static two<string, string> splitWhileStr(Fun f, string str){AronLambda::splitWhileStr1105,21563
+static vector<T> tail(vector<T> vec) {tail1130,21960
+static vector<T> tail(vector<T> vec) {AronLambda::tail1130,21960
+static T foldl(Fun f, T acc, vector<T> vec) {foldl1143,22177
+static T foldl(Fun f, T acc, vector<T> vec) {AronLambda::foldl1143,22177
+static T foldr(Fun f, T acc, const vector<T>& vec) {foldr1162,22619
+static T foldr(Fun f, T acc, const vector<T>& vec) {AronLambda::foldr1162,22619
+static vector<T> init(const vector<T>& vec) {init1171,22819
+static vector<T> init(const vector<T>& vec) {AronLambda::init1171,22819
+static vector<A> map(Fun f, vector<A> vec) {map1193,23260
+static vector<A> map(Fun f, vector<A> vec) {AronLambda::map1193,23260
+static vector<T> zipWith(Fun f, vector<T> v1, vector<T> v2) {zipWith1202,23441
+static vector<T> zipWith(Fun f, vector<T> v1, vector<T> v2) {AronLambda::zipWith1202,23441
+static vector<T> flat(vector<vector<T>>& vec2){flat1226,24104
+static vector<T> flat(vector<vector<T>>& vec2){AronLambda::flat1226,24104
+static vector<T> filter(Fun f, const vector<T>& vec) {filter1244,24457
+static vector<T> filter(Fun f, const vector<T>& vec) {AronLambda::filter1244,24457
+static string take(int n, string s) {take1255,24678
+static string take(int n, string s) {AronLambda::take1255,24678
+static string take(int n, const char* str){take1266,24833
+static string take(int n, const char* str){AronLambda::take1266,24833
+static vector<T> take(int n, const vector<T>& vec) {take1272,24954
+static vector<T> take(int n, const vector<T>& vec) {AronLambda::take1272,24954
+static vector<T> drop(int n, vector<T> vec) {drop1287,25228
+static vector<T> drop(int n, vector<T> vec) {AronLambda::drop1287,25228
+static vector<T> mergeSortListLam(Fun f, vector<T> v1, vector<T> v2) {mergeSortListLam1299,25465
+static vector<T> mergeSortListLam(Fun f, vector<T> v1, vector<T> v2) {AronLambda::mergeSortListLam1299,25465
+static vector<T> mergeSortList(vector<T> v1, vector<T> v2) {mergeSortList1321,25966
+static vector<T> mergeSortList(vector<T> v1, vector<T> v2) {AronLambda::mergeSortList1321,25966
+static vector<T> mergeSort(vector<T> v1) {mergeSort1338,26374
+static vector<T> mergeSort(vector<T> v1) {AronLambda::mergeSort1338,26374
+void pl(T t) {pl1370,26965
+string toStr2(T& s) {toStr21377,27060
+string toStrVar(T& s) {toStrVar1384,27168
+void nl(){nl1398,27382
+void swap(T arr[], int i, int j) {swap1403,27435
+void swap(vector<T>& vec, int i, int j){swap1410,27553
+long lcgRandom(long x0){lcgRandom1428,27955
+vector<int> randomIntVec(int count, int max){randomIntVec1437,28115
+vector<int> randomNanoSec(int n, int max){randomNanoSec1451,28433
+int random(int n) {random1469,28776
+vector<int> allPrime(int n) {allPrime1476,28876
+vector<int>* nPrime(int n){nPrime1493,29203
+const char* stringToCString(string s) {stringToCString1522,29727
+const char* s2c(string s) {s2c1529,29839
+const char* toCharPtr(string s) {toCharPtr1538,29999
+const char* strToCharArray(string s){strToCharArray1542,30055
+string toStr(const T& s) {toStr1553,30220
+string toStr(std::pair<T, U> p){toStr1560,30345
+string str(std::pair<T, U> p){str1570,30546
+string str(const T& s) {str1575,30622
+string str2(T& s) {str21580,30692
+string trimLeft(string str) {trimLeft1584,30737
+string trimRight(string str) {trimRight1592,30916
+string trim(string str) {trim1606,31181
+string cStringToString(const char* pt) {cStringToString1616,31378
+string charPtrToString(const char* pt){charPtrToString1621,31459
+string c2s(const char* pt) {c2s1629,31567
+bool containStrRegex(string s, regex rx) {containStrRegex1643,31782
+bool containStr(string str, string pat) {containStr1658,32033
+vector<string> splitStr(string s, string delim) {splitStr1678,32398
+std::pair<vector<T>, vector<T>> splitAt(int n, vector<T> vec) {splitAt1704,33022
+std::pair<vector<T>, vector<T>> breakVec(Fun f, vector<T> vec) {breakVec1722,33409
+vector<T> replaceVec(T oldVal, T newVal, vector<T> vec) {replaceVec1740,33791
+vector<T> insertAt(vector<T> vec, int pos, vector<T> insertVec) {insertAt1763,34371
+vector<std::string> splitStrRegex(const string& s, string rgxStr = "\\s+") {splitStrRegex1787,35108
+bool isEmpty(string s) {isEmpty1804,35465
+bool isEmpty(const char* cpt) {isEmpty1811,35550
+double squareRoot(double a) {squareRoot1825,35822
+double intToDouble(int n) {intToDouble1839,36017
+double nthRoot(double c, int n, double epsilon = 0.000001) {nthRoot1849,36181
+string charArrToString(const char* pt) {charArrToString1872,36763
+string replicate(int n, string s) {replicate1878,36900
+string repeat(int n, string s) {repeat1890,37113
+vector<T> repeatVec(int n, T t) {repeatVec1895,37198
+vector<T> add(vector<T> vec, T t){add1911,37433
+vector<T> append(vector<T> vec, T t){append1916,37517
+int compareCString(char* s1, char* s2) {compareCString1930,37705
+int compareString(string s1, string s2) {compareString1938,37837
+bool compareVector(vector<T> v1, vector<T> v2){compareVector1943,37930
+bool compareVector(vector<vector<T>> v1, vector<vector<T>> v2){compareVector1956,38209
+bool compareFloat(double a, double b) {compareFloat1972,38498
+void print(glm::vec3 v3) {print1977,38603
+void print(glm::vec2 v2) {print1980,38685
+void printLn(glm::vec3 v3) {printLn1984,38756
+void printLn(glm::vec2 v2) {printLn1987,38838
+string toString(glm::vec3 v3) {toString1991,38909
+vector<vector<T>> transpose(vector<vector<T>> mat) {transpose2033,39555
+int inx(int cIx, int rIx, int width){inx2051,39955
+void tranmat4(float arr[16]){tranmat42074,40348
+bool compareArray(T arr1[], T arr2[], const int s1) {compareArray2088,40697
+void print(std::pair<T, T> pair) {print2097,40885
+void print(two<T, T> t) {print2102,41000
+void print(vector<T> vec) {print2108,41084
+void printVec(vector<T> vec) {printVec2116,41211
+void print(vector< vector<T> > vec) {print2121,41282
+void print(T t) {print2130,41425
+void printNb(T t) {printNb2140,41547
+void printLn(T t) {printLn2145,41609
+void printLnNb(T t) {printLnNb2150,41692
+void ppL(T t) {ppL2157,41769
+void printArr(float* arr, int n, int nCol){printArr2162,41805
+void printArr(float* arr, int len){printArr2172,41973
+vector<T> concatVec(vector<T> v1, vector<T> v2){concatVec2187,42186
+vector<T> operator+(vector<T> v1, vector<T> v2) {operator +2198,42407
+string operator+(const char* chars, string s) {operator +2204,42548
+string operator+(string s, const char* chars) {operator +2208,42638
+vector<T> con(T t, vector<T> v) {con2213,42749
+vector<T>* moveVec(T a, vector<T> vec) {moveVec2226,43004
+int unsignToInt(size_t u){unsignToInt2235,43203
+vector<T>* append(vector<T> vec, T a) {append2249,43503
+int length(string s){length2261,43735
+int length(vector<T> v){length2272,43852
+int len(string s){len2279,43948
+int len(vector<T> v){len2287,44047
+bool binSearch(T key, T arr[], int lo, int hi){binSearch2303,44254
+vector<T> operator*(T a, vector<T> vec) {operator *2323,44672
+vector<T> operator*(vector<T> vec, T a) {operator *2337,44910
+vector< vector<T> > operator*(T a, vector< vector<T> > vec2) {operator *2346,45092
+vector< vector<T> > operator*(vector< vector<T> > vec2, T a) {operator *2356,45325
+vector<T> reverseVec(vector<T> vec){reverseVec2369,45526
+vector<int> range(int a, int b) {range2377,45671
+vector<int> range(int a, int b, int stride) {range2385,45827
+vector<int> geneVector(int a, int b) {geneVector2393,46001
+bool isBST(Node<int>* curr, Node<int>* &prev){isBST2407,46317
+vector< vector<T> > geneMatrix(int ncol, int nrow, T init) {geneMatrix2425,46698
+void swapT(T array[], int i, int j) {swapT2441,47040
+int partitionT(T array[], int lo, int hi) {partitionT2454,47248
+T partition(vector<T>& vec, int lo, int hi){partition2484,47815
+int partitionInline(vector<T>& vec, int lo, int hi){partitionInline2521,48667
+void quickSortVec(vector<T>& vec, int lo, int hi){quickSortVec2540,49080
+void quickSortT(T array[], int lo, int hi) {quickSortT2552,49351
+std::string replace(std::string str, regex rex, std::string rep){replace2560,49551
+bool isEmptyLine(string s){isEmptyLine2564,49667
+string getEnv(string env){getEnv2571,49805
+vector<T> getCol(int ix, vector<vector<T>> v){getCol2577,49916
+string concatValidPath(vector<string> vec){concatValidPath2597,50290
+string removeAdjacentDuplicateChar(string s, char c){removeAdjacentDuplicateChar2611,50644
+namespace SpaceTest {SpaceTest2628,50978
+    static void t(double a, double b, string s = "") {t2631,51028
+    static void t(double a, double b, string s = "") {SpaceTest::t2631,51028
+    static void t(int a, int b, string s = "") {t2641,51269
+    static void t(int a, int b, string s = "") {SpaceTest::t2641,51269
+    static void t(long a, long b, string s = "") {t2650,51462
+    static void t(long a, long b, string s = "") {SpaceTest::t2650,51462
+    static void t(bool a, bool b, string s = "") {t2659,51657
+    static void t(bool a, bool b, string s = "") {SpaceTest::t2659,51657
+    static void t(string a, string b, string s = "") {t2668,51851
+    static void t(string a, string b, string s = "") {SpaceTest::t2668,51851
+    static void t(vector<T> v1, vector<T> v2, string s = "") {t2679,52078
+    static void t(vector<T> v1, vector<T> v2, string s = "") {SpaceTest::t2679,52078
+    static void t(vector<vector<T>> v1, vector<vector<T>> v2, string s = "") {t2691,52360
+    static void t(vector<vector<T>> v1, vector<vector<T>> v2, string s = "") {SpaceTest::t2691,52360
+namespace AronGeometry {AronGeometry2706,52690
+class Point {Point2712,52812
+class Point {AronGeometry::Point2712,52812
+    T x;x2714,52834
+    T x;AronGeometry::Point::x2714,52834
+    T y;y2715,52843
+    T y;AronGeometry::Point::y2715,52843
+    T z;z2716,52852
+    T z;AronGeometry::Point::z2716,52852
+    Point() {Point2717,52861
+    Point() {AronGeometry::Point::Point2717,52861
+    Point(T x, T y, T z = 0.0 ) {Point2722,52932
+    Point(T x, T y, T z = 0.0 ) {AronGeometry::Point::Point2722,52932
+    friend Point<T> operator+(Point<T> p1, Point<T> p2) {operator +2728,53036
+    friend Point<T> operator+(Point<T> p1, Point<T> p2) {AronGeometry::Point::operator +2728,53036
+    friend Point<T> operator-(Point<T> p1, Point<T> p2) {operator -2732,53177
+    friend Point<T> operator-(Point<T> p1, Point<T> p2) {AronGeometry::Point::operator -2732,53177
+    friend Point<T> operator*(double k, Point<T> p) {operator *2736,53318
+    friend Point<T> operator*(double k, Point<T> p) {AronGeometry::Point::operator *2736,53318
+    friend Point<T> operator*(Point<T> p, double k) {operator *2740,53439
+    friend Point<T> operator*(Point<T> p, double k) {AronGeometry::Point::operator *2740,53439
+    Point<T> operator+(Vector<T> v) {operator +2746,53543
+    Point<T> operator+(Vector<T> v) {AronGeometry::Point::operator +2746,53543
+    bool operator==(Point p0) {operator ==2750,53649
+    bool operator==(Point p0) {AronGeometry::Point::operator ==2750,53649
+    bool operator!=(Point p0) {operator !=2753,53739
+    bool operator!=(Point p0) {AronGeometry::Point::operator !=2753,53739
+class Pair {Pair2768,54060
+class Pair {AronGeometry::Pair2768,54060
+    Point<T> p0;p02770,54081
+    Point<T> p0;AronGeometry::Pair::p02770,54081
+    Point<T> p1;p12771,54098
+    Point<T> p1;AronGeometry::Pair::p12771,54098
+    Pair(Point<T> p0, Point<T> p1) {Pair2772,54115
+    Pair(Point<T> p0, Point<T> p1) {AronGeometry::Pair::Pair2772,54115
+    Pair operator+(Pair pair) {operator +2777,54216
+    Pair operator+(Pair pair) {AronGeometry::Pair::operator +2777,54216
+    Pair operator-(Pair pair) {operator -2781,54334
+    Pair operator-(Pair pair) {AronGeometry::Pair::operator -2781,54334
+class Vector {Vector2790,54476
+class Vector {AronGeometry::Vector2790,54476
+    Point<T> p0; // originp02792,54499
+    Point<T> p0; // originAronGeometry::Vector::p02792,54499
+    Point<T> p1;p12793,54526
+    Point<T> p1;AronGeometry::Vector::p12793,54526
+    Vector(Point<T> p0, Point<T> p1) {Vector2795,54551
+    Vector(Point<T> p0, Point<T> p1) {AronGeometry::Vector::Vector2795,54551
+    bool isZero() {isZero2800,54647
+    bool isZero() {AronGeometry::Vector::isZero2800,54647
+    Vector<T> dir() {dir2803,54698
+    Vector<T> dir() {AronGeometry::Vector::dir2803,54698
+    Vector<T> operator+(Vector<T> v) {operator +2817,55015
+    Vector<T> operator+(Vector<T> v) {AronGeometry::Vector::operator +2817,55015
+class Segment {Segment2825,55154
+class Segment {AronGeometry::Segment2825,55154
+    Point<T> p0;p02827,55178
+    Point<T> p0;AronGeometry::Segment::p02827,55178
+    Point<T> p1;p12828,55195
+    Point<T> p1;AronGeometry::Segment::p12828,55195
+    Segment(Point<T> p0, Point<T> p1) {Segment2834,55282
+    Segment(Point<T> p0, Point<T> p1) {AronGeometry::Segment::Segment2834,55282
+    double squareDist() {squareDist2843,55467
+    double squareDist() {AronGeometry::Segment::squareDist2843,55467
+    double distance() {distance2848,55614
+    double distance() {AronGeometry::Segment::distance2848,55614
+    bool isColinear(Point<T> p) {isColinear2853,55765
+    bool isColinear(Point<T> p) {AronGeometry::Segment::isColinear2853,55765
+    bool isCrossSegment(Segment<T> s1, Segment<T> s2) {isCrossSegment2862,55997
+    bool isCrossSegment(Segment<T> s1, Segment<T> s2) {AronGeometry::Segment::isCrossSegment2862,55997
+    bool isEndPoint(Point<T> p) {isEndPoint2865,56080
+    bool isEndPoint(Point<T> p) {AronGeometry::Segment::isEndPoint2865,56080
+    bool operator==(Segment<T> s) {operator ==2868,56155
+    bool operator==(Segment<T> s) {AronGeometry::Segment::operator ==2868,56155
+double isColinear3(Point<T> p, Point<T> p1, Point<T> p2) {isColinear32874,56299
+double isColinear3(Point<T> p, Point<T> p1, Point<T> p2) {AronGeometry::isColinear32874,56299
+bool isCrossSegment(Point<T> p0, Point<T> p1) {isCrossSegment2879,56485
+bool isCrossSegment(Point<T> p0, Point<T> p1) {AronGeometry::isCrossSegment2879,56485
+namespace Utility {Utility2897,56681
+bool isSubstring(string sub, string s){isSubstring2912,56954
+bool isSubstring(string sub, string s){Utility::isSubstring2912,56954
+int substringFirstIndex(string sub, string s){substringFirstIndex2951,57958
+int substringFirstIndex(string sub, string s){Utility::substringFirstIndex2951,57958
+int stringToInt(string s) {stringToInt2986,58724
+int stringToInt(string s) {Utility::stringToInt2986,58724
+double stringToDouble(std::string s) {stringToDouble2993,58802
+double stringToDouble(std::string s) {Utility::stringToDouble2993,58802
+long stringToLong(std::string s) {stringToLong2998,58887
+long stringToLong(std::string s) {Utility::stringToLong2998,58887
+float stringToFloat(std::string s) {stringToFloat3003,58969
+float stringToFloat(std::string s) {Utility::stringToFloat3003,58969
+string charToString(char ch) {charToString3008,59052
+string charToString(char ch) {Utility::charToString3008,59052
+void begin() {begin3015,59158
+void begin() {Utility::begin3015,59158
+void begin(const char* name) {begin3023,59385
+void begin(const char* name) {Utility::begin3023,59385
+void end() {end3028,59526
+void end() {Utility::end3028,59526
+void cut(char* pt) {cut3032,59552
+void cut(char* pt) {Utility::cut3032,59552
+string fun_parent() {fun_parent3040,59778
+string fun_parent() {Utility::fun_parent3040,59778
+string fun_parent_parent() {fun_parent_parent3055,60131
+string fun_parent_parent() {Utility::fun_parent_parent3055,60131
+void print(Vector3 v) {print3069,60408
+void print(Vector3 v) {Utility::print3069,60408
+void print(DDLinkedList<Vector3>* ddl) {print3073,60450
+void print(DDLinkedList<Vector3>* ddl) {Utility::print3073,60450
+namespace SpaceComplex {SpaceComplex3203,64370
+class Complex {Complex3204,64395
+class Complex {SpaceComplex::Complex3204,64395
+    double x;x3206,64419
+    double x;SpaceComplex::Complex::x3206,64419
+    double y;y3207,64433
+    double y;SpaceComplex::Complex::y3207,64433
+    Complex() {Complex3212,64490
+    Complex() {SpaceComplex::Complex::Complex3212,64490
+    Complex(double x_, double y_) {Complex3219,64595
+    Complex(double x_, double y_) {SpaceComplex::Complex::Complex3219,64595
+    Complex operator+(Complex& c) {operator +3227,64715
+    Complex operator+(Complex& c) {SpaceComplex::Complex::operator +3227,64715
+    Complex operator-(Complex& c) {operator -3237,64895
+    Complex operator-(Complex& c) {SpaceComplex::Complex::operator -3237,64895
+    Complex operator*(const Complex& c) {operator *3249,65210
+    Complex operator*(const Complex& c) {SpaceComplex::Complex::operator *3249,65210
+    bool operator==(const Complex& c) {operator ==3257,65366
+    bool operator==(const Complex& c) {SpaceComplex::Complex::operator ==3257,65366
+    Complex conjugate() {conjugate3260,65449
+    Complex conjugate() {SpaceComplex::Complex::conjugate3260,65449
+    double norm(Complex& c) {norm3265,65528
+    double norm(Complex& c) {SpaceComplex::Complex::norm3265,65528
+    std::pair<double, double> polar() {polar3269,65605
+    std::pair<double, double> polar() {SpaceComplex::Complex::polar3269,65605
+    friend Complex operator/(const Complex& c1,  const Complex& c2) {operator /3282,65956
+    friend Complex operator/(const Complex& c1,  const Complex& c2) {SpaceComplex::Complex::operator /3282,65956
+    void print() {print3293,66263
+    void print() {SpaceComplex::Complex::print3293,66263
+Complex rectangular(std::pair<double, double> p) {rectangular3303,66372
+Complex rectangular(std::pair<double, double> p) {SpaceComplex::rectangular3303,66372
+namespace MatrixVector {MatrixVector3318,66787
+T** allocateTemp(int ncol, int nrow) {allocateTemp3332,67081
+T** allocateTemp(int ncol, int nrow) {MatrixVector::allocateTemp3332,67081
+T** allocate(int ncol, int nrow) {allocate3346,67407
+T** allocate(int ncol, int nrow) {MatrixVector::allocate3346,67407
+T** vecVecToArrArr(vector< vector<T> > vv) {vecVecToArrArr3359,67719
+T** vecVecToArrArr(vector< vector<T> > vv) {MatrixVector::vecVecToArrArr3359,67719
+vector< vector<T> > arrArrToVecVec(T** arr, int ncol, int nrow) {arrArrToVecVec3403,68628
+vector< vector<T> > arrArrToVecVec(T** arr, int ncol, int nrow) {MatrixVector::arrArrToVecVec3403,68628
+class vec {vec3419,68937
+class vec {MatrixVector::vec3419,68937
+    int nrow;nrow3421,68957
+    int nrow;MatrixVector::vec::nrow3421,68957
+    int ncol;ncol3422,68971
+    int ncol;MatrixVector::vec::ncol3422,68971
+    float **arr;arr3423,68985
+    float **arr;MatrixVector::vec::arr3423,68985
+class row {row3450,69556
+class row {MatrixVector::row3450,69556
+    int ncol;ncol3452,69576
+    int ncol;MatrixVector::row::ncol3452,69576
+    int nrow;nrow3453,69590
+    int nrow;MatrixVector::row::nrow3453,69590
+    float** arr;arr3454,69604
+    float** arr;MatrixVector::row::arr3454,69604
+vec::vec() {}vec3479,70137
+vec::vec() {}MatrixVector::vec::vec3479,70137
+vec::vec(const vec& v) {vec3482,70172
+vec::vec(const vec& v) {MatrixVector::vec::vec3482,70172
+vec::vec(const vector<float> &v){vec3491,70344
+vec::vec(const vector<float> &v){MatrixVector::vec::vec3491,70344
+vec::vec(int col, int row=1) {vec3506,70647
+vec::vec(int col, int row=1) {MatrixVector::vec::vec3506,70647
+vec::~vec() {~vec3514,70805
+vec::~vec() {MatrixVector::vec::~vec3514,70805
+  void vec::normalize(){normalize3525,70963
+  void vec::normalize(){MatrixVector::vec::normalize3525,70963
+  void vec::negate(){negate3536,71162
+  void vec::negate(){MatrixVector::vec::negate3536,71162
+  void vec::fill(float val){fill3542,71253
+  void vec::fill(float val){MatrixVector::vec::fill3542,71253
+int vec::size(){size3547,71341
+int vec::size(){MatrixVector::vec::size3547,71341
+vector<float> vec::toVector() {toVector3553,71411
+vector<float> vec::toVector() {MatrixVector::vec::toVector3553,71411
+vector<float> vec::toVec() {toVec3560,71556
+vector<float> vec::toVec() {MatrixVector::vec::toVec3560,71556
+vec vec::operator+(vec v) {operator +3564,71611
+vec vec::operator+(vec v) {MatrixVector::vec::operator +3564,71611
+vec vec::operator-(vec& v) {operator -3573,71784
+vec vec::operator-(vec& v) {MatrixVector::vec::operator -3573,71784
+bool vec::operator==(const vec& v) {operator ==3583,71970
+bool vec::operator==(const vec& v) {MatrixVector::vec::operator ==3583,71970
+vec& vec::operator=(const vec& v) {operator =3592,72181
+vec& vec::operator=(const vec& v) {MatrixVector::vec::operator =3592,72181
+void vec::createVec(float* array, int len) {createVec3604,72444
+void vec::createVec(float* array, int len) {MatrixVector::vec::createVec3604,72444
+void vec::print() {print3610,72561
+void vec::print() {MatrixVector::vec::print3610,72561
+row::row() {row3616,72658
+row::row() {MatrixVector::row::row3616,72658
+row::row(int col, int row) {row3618,72673
+row::row(int col, int row) {MatrixVector::row::row3618,72673
+row::row(int nr) {row3623,72775
+row::row(int nr) {MatrixVector::row::row3623,72775
+row::row(const vector<float>& vec) {row3631,72919
+row::row(const vector<float>& vec) {MatrixVector::row::row3631,72919
+row::~row() {~row3639,73105
+row::~row() {MatrixVector::row::~row3639,73105
+row::row(const row& rw) {row3648,73277
+row::row(const row& rw) {MatrixVector::row::row3648,73277
+  void row::negate(){negate3656,73456
+  void row::negate(){MatrixVector::row::negate3656,73456
+  void row::normalize(){normalize3662,73547
+  void row::normalize(){MatrixVector::row::normalize3662,73547
+row vec::tran() {tran3673,73745
+row vec::tran() {MatrixVector::vec::tran3673,73745
+vec row::tran() {tran3683,73927
+vec row::tran() {MatrixVector::row::tran3683,73927
+vector<float> row::toVector() {toVector3697,74155
+vector<float> row::toVector() {MatrixVector::row::toVector3697,74155
+vector<float> row::toVec() {toVec3705,74303
+vector<float> row::toVec() {MatrixVector::row::toVec3705,74303
+void row::print() {print3709,74358
+void row::print() {MatrixVector::row::print3709,74358
+bool row::operator==(const row& r) {operator ==3717,74466
+bool row::operator==(const row& r) {MatrixVector::row::operator ==3717,74466
+row row::operator=(const row& r) {operator =3726,74656
+row row::operator=(const row& r) {MatrixVector::row::operator =3726,74656
+void row::createRow(float* array, int len) {createRow3736,74860
+void row::createRow(float* array, int len) {MatrixVector::row::createRow3736,74860
+class mat {mat3745,75056
+class mat {MatrixVector::mat3745,75056
+    int ncol;ncol3747,75076
+    int ncol;MatrixVector::mat::ncol3747,75076
+    int nrow;nrow3748,75090
+    int nrow;MatrixVector::mat::nrow3748,75090
+    float** arr;arr3749,75104
+    float** arr;MatrixVector::mat::arr3749,75104
+    class Loader{Loader3770,75529
+    class Loader{MatrixVector::mat::Loader3770,75529
+        mat& m;m3772,75559
+        mat& m;MatrixVector::mat::Loader::m3772,75559
+        int ix;ix3773,75575
+        int ix;MatrixVector::mat::Loader::ix3773,75575
+        Loader(mat& m, int ix) : m(m), ix(ix) {}Loader3774,75591
+        Loader(mat& m, int ix) : m(m), ix(ix) {}MatrixVector::mat::Loader::Loader3774,75591
+        Loader operator , (float x){operator ,3775,75640
+        Loader operator , (float x){MatrixVector::mat::Loader::operator ,3775,75640
+    Loader operator << (float x){operator <<3784,75882
+    Loader operator << (float x){MatrixVector::mat::operator <<3784,75882
+mat::mat() {mat3897,78596
+mat::mat() {MatrixVector::mat::mat3897,78596
+void mat::zero() {zero3903,78698
+void mat::zero() {MatrixVector::mat::zero3903,78698
+mat mat::id() {id3911,78831
+mat mat::id() {MatrixVector::mat::id3911,78831
+void mat::identity() {identity3919,78950
+void mat::identity() {MatrixVector::mat::identity3919,78950
+mat::mat(const mat& m) {mat3938,79323
+mat::mat(const mat& m) {MatrixVector::mat::mat3938,79323
+mat::mat(int col, int row) {mat3948,79548
+mat::mat(int col, int row) {MatrixVector::mat::mat3948,79548
+mat::mat(vector< vector<float> > v2){mat3958,79741
+mat::mat(vector< vector<float> > v2){MatrixVector::mat::mat3958,79741
+mat::mat(int col, int row, vector<float> v){mat3968,80019
+mat::mat(int col, int row, vector<float> v){MatrixVector::mat::mat3968,80019
+mat::~mat() {~mat3979,80310
+mat::~mat() {MatrixVector::mat::~mat3979,80310
+mat vec::toMatrix() {toMatrix3986,80401
+mat vec::toMatrix() {MatrixVector::vec::toMatrix3986,80401
+void mat::print(){print4013,80903
+void mat::print(){MatrixVector::mat::print4013,80903
+string mat::toStr() {toStr4039,81413
+string mat::toStr() {MatrixVector::mat::toStr4039,81413
+  vector<vector<float>> mat::toVecVec(){toVecVec4050,81660
+  vector<vector<float>> mat::toVecVec(){MatrixVector::mat::toVecVec4050,81660
+void mat::print2() {print24062,81898
+void mat::print2() {MatrixVector::mat::print24062,81898
+vec mat::getVec(int n) {getVec4074,82131
+vec mat::getVec(int n) {MatrixVector::mat::getVec4074,82131
+  void mat::setVec(int index, vec v) {setVec4083,82295
+  void mat::setVec(int index, vec v) {MatrixVector::mat::setVec4083,82295
+  void mat::setVec(int index, vector<float> v) {setVec4094,82531
+  void mat::setVec(int index, vector<float> v) {MatrixVector::mat::setVec4094,82531
+  void mat::setRow(int index, row rv) {setRow4105,82773
+  void mat::setRow(int index, row rv) {MatrixVector::mat::setRow4105,82773
+  void mat::setRow(int index, vector<float> v) {setRow4116,83011
+  void mat::setRow(int index, vector<float> v) {MatrixVector::mat::setRow4116,83011
+row mat::getRow(int index) {getRow4131,83298
+row mat::getRow(int index) {MatrixVector::mat::getRow4131,83298
+mat mat::removeVec(int index) {removeVec4142,83499
+mat mat::removeVec(int index) {MatrixVector::mat::removeVec4142,83499
+mat mat::insertVecNext(int index, vec v) {insertVecNext4160,83929
+mat mat::insertVecNext(int index, vec v) {MatrixVector::mat::insertVecNext4160,83929
+mat mat::addVec(vec v) {addVec4169,84188
+mat mat::addVec(vec v) {MatrixVector::mat::addVec4169,84188
+  two<mat, mat> mat::splitAt(int index){splitAt4187,84347
+  two<mat, mat> mat::splitAt(int index){MatrixVector::mat::splitAt4187,84347
+mat mat::insertVecPrevious(int index, vec v) {insertVecPrevious4200,84635
+mat mat::insertVecPrevious(int index, vec v) {MatrixVector::mat::insertVecPrevious4200,84635
+mat mat::removeRow(int index) {removeRow4212,84955
+mat mat::removeRow(int index) {MatrixVector::mat::removeRow4212,84955
+mat mat::addRow(vector<float> v) {addRow4229,85316
+mat mat::addRow(vector<float> v) {MatrixVector::mat::addRow4229,85316
+  mat mat::addRow(row rv) {addRow4248,85651
+  mat mat::addRow(row rv) {MatrixVector::mat::addRow4248,85651
+mat mat::operator+(mat m) {operator +4264,85925
+mat mat::operator+(mat m) {MatrixVector::mat::operator +4264,85925
+mat mat::operator-(const mat &m) {operator -4274,86131
+mat mat::operator-(const mat &m) {MatrixVector::mat::operator -4274,86131
+mat mat::operator/(float f) {operator /4283,86343
+mat mat::operator/(float f) {MatrixVector::mat::operator /4283,86343
+mat mat::operator*(float f) {operator *4293,86539
+mat mat::operator*(float f) {MatrixVector::mat::operator *4293,86539
+mat mat::subMatrix(int cStart, int rStart) {subMatrix4319,86944
+mat mat::subMatrix(int cStart, int rStart) {MatrixVector::mat::subMatrix4319,86944
+mat mat::take(int len) {take4339,87393
+mat mat::take(int len) {MatrixVector::mat::take4339,87393
+mat mat::takeRow(int len) {takeRow4344,87473
+mat mat::takeRow(int len) {MatrixVector::mat::takeRow4344,87473
+mat mat::drop(int len) {drop4358,87682
+mat mat::drop(int len) {MatrixVector::mat::drop4358,87682
+mat mat::dropRow(int len) {dropRow4363,87771
+mat mat::dropRow(int len) {MatrixVector::mat::dropRow4363,87771
+mat mat::init() {init4382,88064
+mat mat::init() {MatrixVector::mat::init4382,88064
+mat mat::tail() {tail4403,88374
+mat mat::tail() {MatrixVector::mat::tail4403,88374
+mat mat::block(int cIndex, int clen, int rIndex, int rlen) {block4420,88734
+mat mat::block(int cIndex, int clen, int rIndex, int rlen) {MatrixVector::mat::block4420,88734
+mat mat::transpose() {transpose4440,89227
+mat mat::transpose() {MatrixVector::mat::transpose4440,89227
+bool mat::operator==(const mat& m) {operator ==4451,89443
+bool mat::operator==(const mat& m) {MatrixVector::mat::operator ==4451,89443
+void mat::geneMat(int init) {geneMat4469,89829
+void mat::geneMat(int init) {MatrixVector::mat::geneMat4469,89829
+void mat::geneMatRandom(int fst, int snd){geneMatRandom4492,90196
+void mat::geneMatRandom(int fst, int snd){MatrixVector::mat::geneMatRandom4492,90196
+mat vec::operator*(row rw) {operator *4504,90445
+mat vec::operator*(row rw) {MatrixVector::vec::operator *4504,90445
+mat vec::multi() {multi4516,90715
+mat vec::multi() {MatrixVector::vec::multi4516,90715
+vec mat::operator*(vec &v) {operator *4521,90768
+vec mat::operator*(vec &v) {MatrixVector::mat::operator *4521,90768
+mat mat::operator*(mat m) {operator *4529,90934
+mat mat::operator*(mat m) {MatrixVector::mat::operator *4529,90934
+mat mat::operator=(const mat& m) {operator =4539,91147
+mat mat::operator=(const mat& m) {MatrixVector::mat::operator =4539,91147
+mat mat::clone() {clone4553,91461
+mat mat::clone() {MatrixVector::mat::clone4553,91461
+mat mat::concat(mat m) {concat4563,91664
+mat mat::concat(mat m) {MatrixVector::mat::concat4563,91664
+mat mat::concatRow(mat m) {concatRow4586,92251
+mat mat::concatRow(mat m) {MatrixVector::mat::concatRow4586,92251
+mat mat::rowMultiScala(int index, float f) {rowMultiScala4594,92466
+mat mat::rowMultiScala(int index, float f) {MatrixVector::mat::rowMultiScala4594,92466
+mat mat::vecMultiScala(int index, float f) {vecMultiScala4608,92787
+mat mat::vecMultiScala(int index, float f) {MatrixVector::mat::vecMultiScala4608,92787
+mat mat::swapRow(int inx1, int inx2){swapRow4625,93142
+mat mat::swapRow(int inx1, int inx2){MatrixVector::mat::swapRow4625,93142
+float row::dot(vec& v) {dot4644,93650
+float row::dot(vec& v) {MatrixVector::row::dot4644,93650
+float row::operator*(vec& v) {operator *4655,93821
+float row::operator*(vec& v) {MatrixVector::row::operator *4655,93821
+row row::operator+(row& r) {operator +4658,93873
+row row::operator+(row& r) {MatrixVector::row::operator +4658,93873
+row row::operator-(row& r) {operator -4667,94058
+row row::operator-(row& r) {MatrixVector::row::operator -4667,94058
+row row::operator/(float f) {operator /4676,94243
+row row::operator/(float f) {MatrixVector::row::operator /4676,94243
+mat concat(mat m1, mat m2) {concat4683,94388
+mat concat(mat m1, mat m2) {MatrixVector::concat4683,94388
+mat identity(int n) {identity4699,94770
+mat identity(int n) {MatrixVector::identity4699,94770
+vec backwardSubstitute(mat a, vec b) {backwardSubstitute4727,95297
+vec backwardSubstitute(mat a, vec b) {MatrixVector::backwardSubstitute4727,95297
+mat ltri(mat m, int index) {ltri4771,96535
+mat ltri(mat m, int index) {MatrixVector::ltri4771,96535
+std::pair<mat, mat> utri(mat m) {utri4788,96986
+std::pair<mat, mat> utri(mat m) {MatrixVector::utri4788,96986
+mat geneMat(int ncol, int nrow, int init){geneMat4802,97300
+mat geneMat(int ncol, int nrow, int init){MatrixVector::geneMat4802,97300
+mat geneMatRandom(int ncol, int nrow, int fst, int snd){geneMatRandom4818,97614
+mat geneMatRandom(int ncol, int nrow, int fst, int snd){MatrixVector::geneMatRandom4818,97614
+void matToArr(MatrixVector::mat m, float* arr, int len){matToArr4838,97964
+namespace SpaceVector4 {SpaceVector44855,98246
+class Vector4 {Vector44856,98271
+class Vector4 {SpaceVector4::Vector44856,98271
+    float column[4];column4857,98287
+    float column[4];SpaceVector4::Vector4::column4857,98287
+    const float e1[4] = {1.0f, 0.0f, 0.0f, 0.0f};e14859,98316
+    const float e1[4] = {1.0f, 0.0f, 0.0f, 0.0f};SpaceVector4::Vector4::e14859,98316
+    const float e2[4] = {0.0f, 1.0f, 0.0f, 0.0f};e24860,98366
+    const float e2[4] = {0.0f, 1.0f, 0.0f, 0.0f};SpaceVector4::Vector4::e24860,98366
+    const float e3[4] = {0.0f, 0.0f, 1.0f, 0.0f};e34861,98416
+    const float e3[4] = {0.0f, 0.0f, 1.0f, 0.0f};SpaceVector4::Vector4::e34861,98416
+    const float e4[4] = {0.0f, 0.0f, 0.0f, 1.0f};e44862,98466
+    const float e4[4] = {0.0f, 0.0f, 0.0f, 1.0f};SpaceVector4::Vector4::e44862,98466
+    Vector4() {Vector44868,98564
+    Vector4() {SpaceVector4::Vector4::Vector44868,98564
+    Vector4(const Vector4& other) {Vector44872,98649
+    Vector4(const Vector4& other) {SpaceVector4::Vector4::Vector44872,98649
+    Vector4(float x, float y, float z, float w = 1.0f) {Vector44879,98864
+    Vector4(float x, float y, float z, float w = 1.0f) {SpaceVector4::Vector4::Vector44879,98864
+    Vector4(const float arr[4]) {Vector44885,99043
+    Vector4(const float arr[4]) {SpaceVector4::Vector4::Vector44885,99043
+    Vector4(float arr[4]) {Vector44891,99219
+    Vector4(float arr[4]) {SpaceVector4::Vector4::Vector44891,99219
+    bool operator==(const Vector4& rhs) {operator ==4897,99389
+    bool operator==(const Vector4& rhs) {SpaceVector4::Vector4::operator ==4897,99389
+    Vector4& operator=(const Vector4& rhs) {operator =4904,99660
+    Vector4& operator=(const Vector4& rhs) {SpaceVector4::Vector4::operator =4904,99660
+    Vector4 operator+(Vector4& rhs) {operator +4912,99898
+    Vector4 operator+(Vector4& rhs) {SpaceVector4::Vector4::operator +4912,99898
+    Vector4 operator-(Vector4& rhs) {operator -4921,100173
+    Vector4 operator-(Vector4& rhs) {SpaceVector4::Vector4::operator -4921,100173
+    Vector4 operator/(float n) {operator /4930,100448
+    Vector4 operator/(float n) {SpaceVector4::Vector4::operator /4930,100448
+    float dot(Vector4& rhs) {dot4938,100630
+    float dot(Vector4& rhs) {SpaceVector4::Vector4::dot4938,100630
+    float cross(Vector4& rhs) {cross4947,100924
+    float cross(Vector4& rhs) {SpaceVector4::Vector4::cross4947,100924
+    Vector4 normal() {normal4951,100983
+    Vector4 normal() {SpaceVector4::Vector4::normal4951,100983
+    const float& operator[](int index) const {operator []4961,101257
+    const float& operator[](int index) const {SpaceVector4::Vector4::operator []4961,101257
+    float& operator[](int index) {operator []4966,101379
+    float& operator[](int index) {SpaceVector4::Vector4::operator []4966,101379
+    void pp() {pp4970,101451
+    void pp() {SpaceVector4::Vector4::pp4970,101451
+    void print() {print4973,101490
+    void print() {SpaceVector4::Vector4::print4973,101490
+namespace SpaceMatrix4 {SpaceMatrix45032,102720
+class Matrix4 {Matrix45036,102801
+class Matrix4 {SpaceMatrix4::Matrix45036,102801
+    Vector4 mat[4];mat5037,102817
+    Vector4 mat[4];SpaceMatrix4::Matrix4::mat5037,102817
+    Matrix4() {Matrix45039,102845
+    Matrix4() {SpaceMatrix4::Matrix4::Matrix45039,102845
+    Matrix4(const Matrix4& matrix) {Matrix45044,102947
+    Matrix4(const Matrix4& matrix) {SpaceMatrix4::Matrix4::Matrix45044,102947
+    Matrix4(Vector4 v0, Vector4 v1, Vector4 v2, Vector4 v3) {Matrix45051,103103
+    Matrix4(Vector4 v0, Vector4 v1, Vector4 v2, Vector4 v3) {SpaceMatrix4::Matrix4::Matrix45051,103103
+    Matrix4(float m[16]) {Matrix45057,103255
+    Matrix4(float m[16]) {SpaceMatrix4::Matrix4::Matrix45057,103255
+    Matrix4& operator=(const Matrix4& matrix) {operator =5067,103586
+    Matrix4& operator=(const Matrix4& matrix) {SpaceMatrix4::Matrix4::operator =5067,103586
+    bool operator==(const Matrix4& matrix) {operator ==5075,103775
+    bool operator==(const Matrix4& matrix) {SpaceMatrix4::Matrix4::operator ==5075,103775
+    const Vector4& operator[](int index) const {operator []5083,104088
+    const Vector4& operator[](int index) const {SpaceMatrix4::Matrix4::operator []5083,104088
+    Vector4& operator[](int index) {operator []5088,104237
+    Vector4& operator[](int index) {SpaceMatrix4::Matrix4::operator []5088,104237
+    Matrix4 operator+(Matrix4& rhs) {operator +5091,104307
+    Matrix4 operator+(Matrix4& rhs) {SpaceMatrix4::Matrix4::operator +5091,104307
+    Matrix4 operator-(Matrix4& rhs) {operator -5099,104516
+    Matrix4 operator-(Matrix4& rhs) {SpaceMatrix4::Matrix4::operator -5099,104516
+    Vector4 operator*(Vector4& vect4) {operator *5109,104747
+    Vector4 operator*(Vector4& vect4) {SpaceMatrix4::Matrix4::operator *5109,104747
+    Matrix4 operator*(Matrix4& matrix) {operator *5132,105525
+    Matrix4 operator*(Matrix4& matrix) {SpaceMatrix4::Matrix4::operator *5132,105525
+    Matrix4 translate(float x, float y, float z) {translate5142,105822
+    Matrix4 translate(float x, float y, float z) {SpaceMatrix4::Matrix4::translate5142,105822
+    Matrix4 identity() {identity5155,106105
+    Matrix4 identity() {SpaceMatrix4::Matrix4::identity5155,106105
+    void pp() {pp5163,106251
+    void pp() {SpaceMatrix4::Matrix4::pp5163,106251
+    void print() {print5166,106290
+    void print() {SpaceMatrix4::Matrix4::print5166,106290
+vector<T> interleave(const vector<T>& v1, const vector<T>& v2) {interleave5183,106884
+string takeFileName(string path) {takeFileName5215,107507
+string takeDirectory(string path) {takeDirectory5242,108284
+vector<T> interleave(vector<T> v1, vector<T> v2, vector<T> v3){interleave5262,108816
+string takeExtension(string path) {takeExtension5281,109188
+string join(vector<string>& vec) {join5301,109588
+string joinNewLine(vector<string> vec) {joinNewLine5307,109738
+string concatR(vector<string>& vec, string s) {concatR5323,110082
+string concatL(vector<string>& vec, string s) {concatL5340,110432
+vector<string> readFile(string fname) {readFile5355,110743
+vector<string> readFileBackward(string fname, int nline){readFileBackward5369,111027
+string readFileStream(const char* fpath){readFileStream5419,112191
+void listDirToFile(char * path, char* toFile, vector<string>& vec) {listDirToFile5446,112997
+void listDirToVec(char * path, char* toFile, vector<string>& vec) {listDirToVec5472,113890
+vector<string> recurveDirBoost(char* dir) {recurveDirBoost5479,114078
+void recurveDirToFile(char * path, char* toFile, vector<string>& vec) {recurveDirToFile5518,114975
+void listDirAll(char * path) {listDirAll5552,116089
+void listDirToVector(char * path, vector<string>& vec) {listDirToVector5580,117254
+string getPWD() {getPWD5601,118002
+string intToStringLen(int num, int maxlen) {intToStringLen5616,118241
+std::pair<vector<string>, vector<string>> parseLambda(string s) {parseLambda5628,118548
+namespace Algorithm {Algorithm5649,119105
+void merge(int* arr, int lo, int mid, int hi) {merge5651,119128
+void merge(int* arr, int lo, int mid, int hi) {Algorithm::merge5651,119128
+void mergeSort(int* arr, int lo, int hi) {mergeSort5679,119747
+void mergeSort(int* arr, int lo, int hi) {Algorithm::mergeSort5679,119747
+void swap(int array[], int i, int j) {swap5689,119965
+void swap(int array[], int i, int j) {Algorithm::swap5689,119965
+int partition(int array[], int lo, int hi) {partition5705,120301
+int partition(int array[], int lo, int hi) {Algorithm::partition5705,120301
+void quickSortArr(int array[], int lo, int hi) {quickSortArr5722,120668
+void quickSortArr(int array[], int lo, int hi) {Algorithm::quickSortArr5722,120668
+static vector<T> quickSort(vector<T> vec) {quickSort5732,120944
+static vector<T> quickSort(vector<T> vec) {Algorithm::quickSort5732,120944
+static vector<T> mergeSortList(Fun f, vector<T> v1, vector<T> v2) {mergeSortList5749,121424
+static vector<T> mergeSortList(Fun f, vector<T> v1, vector<T> v2) {Algorithm::mergeSortList5749,121424
+void writeFile(string fname, mat& m) {writeFile5785,122139
+T dotProduct(vector<T> v1, vector<T> v2){dotProduct5801,122510
+T det2(vector<vector<T>> v2){det25824,122896
+T det2(vector<T> v1, vector<T> v2){det25851,123348
+vector<T> crossProduct(vector<T> v1, vector<T> v2){crossProduct5890,123874
+void printArr2(float* arr, int len, int width){printArr25918,124400
+vector<T> subtract(vector<T> v1, vector<T> v2){subtract5928,124595
+void print(string s, T t){print5937,124777
+string padRight(string s, string pad, int maxLen){padRight5942,124828
+string padLeft(string s, string pad, int maxLen){padLeft5949,125002
