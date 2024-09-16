@@ -259,7 +259,8 @@ std::string vertexShaderStr = R"(
         gl_Position = projFrum * viewMat * trMat * rotYMat * rotXMat * rotZMat* vec4(aPos, 1.0);
         // gl_Position = rotYMat * vec4(aPos, 1.0);
         // gl_Position = vec4(aPos, 1.0);
-        ourColor = aPos; 
+        // ourColor = aPos; 
+        ourColor = aColor; 
 
         // gl_Position = tmat * vec4(aPos, 1.0);
     }
@@ -273,6 +274,7 @@ std::string fragStr = R"(
     void main()
     {
        FragColor = vec4(ourColor, 1.0f);
+       // FragColor = vec4(0.5, 0.5, 0.5, 1.0f);
     }
 )";
 
@@ -702,12 +704,12 @@ int main(){
 	 └~──────┘
 	 */
 	float tetrahedron[] = {
-	  r1, -r1, r1,                0.5f, 0.0f, 0.9f,	// A a1
-	  -r1, r1,  r1,               0.2f, 0.0f, 0.3f,	// B a2        
-	  -r1,-r1,  -r1,              0.5f, 0.3f, 0.0f,	// C a3
-	  r1, r1,  -r1,               0.2f, 0.2f, 0.0f,	// D a4
-	  r1, -r1, r1,                0.5f, 0.0f, 0.9f,	// A a5
-	  -r1, r1,  r1,               0.2f, 0.0f, 0.3f,	// B a6        
+	  r1, -r1, r1,                1.0f, 0.0f, 0.0f,	// A a1
+	  -r1, r1,  r1,               1.0f, 0.0f, 0.0f,	// B a2        
+	  -r1,-r1,  -r1,              0.0f, 1.0f, 0.0f,	// C a3
+	  r1, r1,  -r1,               0.0f, 1.0f, 0.0f,	// D a4
+	  r1, -r1, r1,                0.0f, 0.0f, 1.0f,	// A a5
+	  -r1, r1,  r1,               0.0f, 0.0f, 1.0f,	// B a6        
     };
 	
     
